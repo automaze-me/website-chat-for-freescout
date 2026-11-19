@@ -2,7 +2,7 @@
 /**
  * Settings page and option handling.
  *
- * @package LiveChatForFreeScout
+ * @package WebsiteChatForFreeScout
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,7 +16,7 @@ class LCFF_Settings {
 
 	const OPTION = 'lcff_settings';
 	const GROUP  = 'lcff_settings_group';
-	const PAGE   = 'live-chat-for-freescout';
+	const PAGE   = 'website-chat-for-freescout';
 
 	/**
 	 * Registers the menu, the settings and the admin assets.
@@ -121,12 +121,12 @@ class LCFF_Settings {
 	}
 
 	/**
-	 * Adds Settings > Live Chat for FreeScout.
+	 * Adds Settings > Website Chat for FreeScout.
 	 */
 	public static function add_menu() {
 		add_options_page(
-			__( 'Live Chat for FreeScout', 'live-chat-for-freescout' ),
-			__( 'Live Chat for FreeScout', 'live-chat-for-freescout' ),
+			__( 'Website Chat for FreeScout', 'website-chat-for-freescout' ),
+			__( 'Website Chat for FreeScout', 'website-chat-for-freescout' ),
 			'manage_options',
 			self::PAGE,
 			array( __CLASS__, 'render_page' )
@@ -150,12 +150,12 @@ class LCFF_Settings {
 			'lcff-admin',
 			'LCFF_ADMIN',
 			array(
-				'chooseTitle'  => __( 'Choose an avatar', 'live-chat-for-freescout' ),
-				'chooseButton' => __( 'Use this image', 'live-chat-for-freescout' ),
+				'chooseTitle'  => __( 'Choose an avatar', 'website-chat-for-freescout' ),
+				'chooseButton' => __( 'Use this image', 'website-chat-for-freescout' ),
 				'ajaxUrl'      => admin_url( 'admin-ajax.php' ),
 				'testAction'   => LCFF_Connection::ACTION,
 				'testNonce'    => wp_create_nonce( LCFF_Connection::NONCE ),
-				'testFailed'   => __( 'The test could not run. Reload the page and try again.', 'live-chat-for-freescout' ),
+				'testFailed'   => __( 'The test could not run. Reload the page and try again.', 'website-chat-for-freescout' ),
 			)
 		);
 	}
@@ -183,7 +183,7 @@ class LCFF_Settings {
 
 		add_settings_field(
 			'freescout_url',
-			__( 'FreeScout URL', 'live-chat-for-freescout' ),
+			__( 'FreeScout URL', 'website-chat-for-freescout' ),
 			array( __CLASS__, 'render_field' ),
 			self::PAGE,
 			'lcff_main',
@@ -191,13 +191,13 @@ class LCFF_Settings {
 				'key'         => 'freescout_url',
 				'type'        => 'url',
 				'placeholder' => 'https://support.example.com',
-				'description' => __( 'The address of your FreeScout installation.', 'live-chat-for-freescout' ),
+				'description' => __( 'The address of your FreeScout installation.', 'website-chat-for-freescout' ),
 			)
 		);
 
 		add_settings_field(
 			'site_id',
-			__( 'Site ID', 'live-chat-for-freescout' ),
+			__( 'Site ID', 'website-chat-for-freescout' ),
 			array( __CLASS__, 'render_field' ),
 			self::PAGE,
 			'lcff_main',
@@ -205,13 +205,13 @@ class LCFF_Settings {
 				'key'         => 'site_id',
 				'type'        => 'text',
 				'placeholder' => '0123456789abcdef0123456789abcdef',
-				'description' => __( 'The 32-character site ID, shown in FreeScout under Manage → Website Chat when you open your website.', 'live-chat-for-freescout' ),
+				'description' => __( 'The 32-character site ID, shown in FreeScout under Manage → Website Chat when you open your website.', 'website-chat-for-freescout' ),
 			)
 		);
 
 		add_settings_field(
 			'secret',
-			__( 'Secret', 'live-chat-for-freescout' ),
+			__( 'Secret', 'website-chat-for-freescout' ),
 			array( __CLASS__, 'render_field' ),
 			self::PAGE,
 			'lcff_main',
@@ -219,32 +219,32 @@ class LCFF_Settings {
 				'key'         => 'secret',
 				'type'        => 'password',
 				'placeholder' => '',
-				'description' => __( 'The 43-character site secret from FreeScout. It lets logged-in visitors and order numbers be recognized. Leave blank to keep the saved value.', 'live-chat-for-freescout' ),
+				'description' => __( 'The 43-character site secret from FreeScout. It lets logged-in visitors and order numbers be recognized. Leave blank to keep the saved value.', 'website-chat-for-freescout' ),
 			)
 		);
 
 		add_settings_section(
 			'lcff_appearance',
-			__( 'Appearance', 'live-chat-for-freescout' ),
+			__( 'Appearance', 'website-chat-for-freescout' ),
 			'__return_empty_string',
 			self::PAGE
 		);
 
 		$fields = array(
-			array( 'team_name', __( 'Team name', 'live-chat-for-freescout' ), 'text', '' ),
-			array( 'avatar_id', __( 'Avatar', 'live-chat-for-freescout' ), 'avatar', '' ),
-			array( 'accent', __( 'Accent color', 'live-chat-for-freescout' ), 'accent', '' ),
-			array( 'button_color', __( 'Button color', 'live-chat-for-freescout' ), 'color', __( 'The color of the round chat button. Leave empty to use the accent color.', 'live-chat-for-freescout' ) ),
-			array( 'button_ring', __( 'Button ring', 'live-chat-for-freescout' ), 'checkbox', __( 'Keeps the button visible where the page behind it has the same color.', 'live-chat-for-freescout' ), __( 'Draw a white ring around the chat button', 'live-chat-for-freescout' ) ),
-			array( 'position', __( 'Position', 'live-chat-for-freescout' ), 'position', '' ),
-			array( 'welcome', __( 'Welcome message', 'live-chat-for-freescout' ), 'textarea', '' ),
-			array( 'welcome_away', __( 'Welcome message (away)', 'live-chat-for-freescout' ), 'textarea', '' ),
-			array( 'hidden_paths', __( 'Hide on pages', 'live-chat-for-freescout' ), 'textarea', __( 'One path per line, e.g. /checkout/. A line ending in * hides the chat on every page below it.', 'live-chat-for-freescout' ) ),
-			array( 'privacy_url', __( 'Privacy policy link', 'live-chat-for-freescout' ), 'url', __( 'Leave empty to use the WordPress privacy page.', 'live-chat-for-freescout' ) ),
+			array( 'team_name', __( 'Team name', 'website-chat-for-freescout' ), 'text', '' ),
+			array( 'avatar_id', __( 'Avatar', 'website-chat-for-freescout' ), 'avatar', '' ),
+			array( 'accent', __( 'Accent color', 'website-chat-for-freescout' ), 'accent', '' ),
+			array( 'button_color', __( 'Button color', 'website-chat-for-freescout' ), 'color', __( 'The color of the round chat button. Leave empty to use the accent color.', 'website-chat-for-freescout' ) ),
+			array( 'button_ring', __( 'Button ring', 'website-chat-for-freescout' ), 'checkbox', __( 'Keeps the button visible where the page behind it has the same color.', 'website-chat-for-freescout' ), __( 'Draw a white ring around the chat button', 'website-chat-for-freescout' ) ),
+			array( 'position', __( 'Position', 'website-chat-for-freescout' ), 'position', '' ),
+			array( 'welcome', __( 'Welcome message', 'website-chat-for-freescout' ), 'textarea', '' ),
+			array( 'welcome_away', __( 'Welcome message (away)', 'website-chat-for-freescout' ), 'textarea', '' ),
+			array( 'hidden_paths', __( 'Hide on pages', 'website-chat-for-freescout' ), 'textarea', __( 'One path per line, e.g. /checkout/. A line ending in * hides the chat on every page below it.', 'website-chat-for-freescout' ) ),
+			array( 'privacy_url', __( 'Privacy policy link', 'website-chat-for-freescout' ), 'url', __( 'Leave empty to use the WordPress privacy page.', 'website-chat-for-freescout' ) ),
 		);
 		add_settings_field(
 			'hours',
-			__( 'Working hours', 'live-chat-for-freescout' ),
+			__( 'Working hours', 'website-chat-for-freescout' ),
 			array( __CLASS__, 'render_hours_field' ),
 			self::PAGE,
 			'lcff_appearance'
@@ -288,16 +288,16 @@ class LCFF_Settings {
 				esc_attr( $base ),
 				checked( null !== $range, true, false ),
 				/* translators: Screen-reader label of the open checkbox. %s: the day of the week */
-				esc_html( sprintf( __( '%s: open', 'live-chat-for-freescout' ), $label ) ),
-				esc_html__( 'Open', 'live-chat-for-freescout' )
+				esc_html( sprintf( __( '%s: open', 'website-chat-for-freescout' ), $label ) ),
+				esc_html__( 'Open', 'website-chat-for-freescout' )
 			);
 			printf(
 				'<label for="%1$s_from"><span class="screen-reader-text">%2$s</span><span aria-hidden="true">%3$s</span></label> <input type="time" id="%1$s_from" name="%4$s[from]" value="%5$s" /> ',
 				esc_attr( $id ),
 				/* translators: Screen-reader label of the opening time. %s: the day of the week */
-				esc_html( sprintf( __( '%s: opening time', 'live-chat-for-freescout' ), $label ) ),
+				esc_html( sprintf( __( '%s: opening time', 'website-chat-for-freescout' ), $label ) ),
 				/* translators: Label before the opening time of a day ("from 09:00"). */
-				esc_html__( 'from', 'live-chat-for-freescout' ),
+				esc_html__( 'from', 'website-chat-for-freescout' ),
 				esc_attr( $base ),
 				esc_attr( $range ? $range[0] : '09:00' )
 			);
@@ -305,18 +305,18 @@ class LCFF_Settings {
 				'<label for="%1$s_to"><span class="screen-reader-text">%2$s</span><span aria-hidden="true">%3$s</span></label> <input type="time" id="%1$s_to" name="%4$s[to]" value="%5$s" />',
 				esc_attr( $id ),
 				/* translators: Screen-reader label of the closing time. %s: the day of the week */
-				esc_html( sprintf( __( '%s: closing time', 'live-chat-for-freescout' ), $label ) ),
+				esc_html( sprintf( __( '%s: closing time', 'website-chat-for-freescout' ), $label ) ),
 				/* translators: Label before the closing time of a day ("to 17:00"). */
-				esc_html__( 'to', 'live-chat-for-freescout' ),
+				esc_html__( 'to', 'website-chat-for-freescout' ),
 				esc_attr( $base ),
 				esc_attr( $to )
 			);
 			echo '</p>';
 		}
-		echo '<p class="description">' . esc_html__( 'From 00:00 to 00:00 counts as the whole day.', 'live-chat-for-freescout' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'From 00:00 to 00:00 counts as the whole day.', 'website-chat-for-freescout' ) . '</p>';
 		$tz = function_exists( 'wp_timezone_string' ) ? wp_timezone_string() : '';
 		/* translators: %s: the site's timezone, e.g. Europe/Berlin or +02:00 */
-		echo '<p class="description">' . esc_html( sprintf( __( "Times use the site's timezone (%s).", 'live-chat-for-freescout' ), $tz ) ) . '</p>';
+		echo '<p class="description">' . esc_html( sprintf( __( "Times use the site's timezone (%s).", 'website-chat-for-freescout' ), $tz ) ) . '</p>';
 	}
 
 	/**
@@ -340,8 +340,8 @@ class LCFF_Settings {
 					$url ? '' : ' lcff-hidden',
 					esc_url( (string) $url )
 				);
-				echo '<button type="button" class="button" id="lcff_avatar_choose">' . esc_html__( 'Choose an avatar', 'live-chat-for-freescout' ) . '</button> ';
-				echo '<button type="button" class="button-link' . ( $url ? '' : ' lcff-hidden' ) . '" id="lcff_avatar_remove">' . esc_html__( 'Remove', 'live-chat-for-freescout' ) . '</button>';
+				echo '<button type="button" class="button" id="lcff_avatar_choose">' . esc_html__( 'Choose an avatar', 'website-chat-for-freescout' ) . '</button> ';
+				echo '<button type="button" class="button-link' . ( $url ? '' : ' lcff-hidden' ) . '" id="lcff_avatar_remove">' . esc_html__( 'Remove', 'website-chat-for-freescout' ) . '</button>';
 				break;
 			case 'accent':
 			case 'color':
@@ -367,8 +367,8 @@ class LCFF_Settings {
 				break;
 			case 'position':
 				printf( '<select id="%1$s" name="%2$s">', esc_attr( $id ), esc_attr( $name ) );
-				printf( '<option value="right"%1$s>%2$s</option>', selected( $val, 'right', false ), esc_html__( 'Bottom right', 'live-chat-for-freescout' ) );
-				printf( '<option value="left"%1$s>%2$s</option>', selected( $val, 'left', false ), esc_html__( 'Bottom left', 'live-chat-for-freescout' ) );
+				printf( '<option value="right"%1$s>%2$s</option>', selected( $val, 'right', false ), esc_html__( 'Bottom right', 'website-chat-for-freescout' ) );
+				printf( '<option value="left"%1$s>%2$s</option>', selected( $val, 'left', false ), esc_html__( 'Bottom left', 'website-chat-for-freescout' ) );
 				echo '</select>';
 				break;
 			case 'textarea':
@@ -414,9 +414,9 @@ class LCFF_Settings {
 		if ( ! isset( $input['freescout_url'] ) || is_string( $input['freescout_url'] ) ) {
 			list( $url, $url_err ) = self::validate_url( self::text( $input, 'freescout_url' ), self::site_is_https() );
 			if ( 'https_required' === $url_err ) {
-				add_settings_error( self::OPTION, 'lcff_url_https', __( 'Your site uses HTTPS, so the FreeScout URL must start with https://.', 'live-chat-for-freescout' ) );
+				add_settings_error( self::OPTION, 'lcff_url_https', __( 'Your site uses HTTPS, so the FreeScout URL must start with https://.', 'website-chat-for-freescout' ) );
 			} elseif ( null !== $url_err ) {
-				add_settings_error( self::OPTION, 'lcff_url', __( 'The FreeScout URL is not valid.', 'live-chat-for-freescout' ) );
+				add_settings_error( self::OPTION, 'lcff_url', __( 'The FreeScout URL is not valid.', 'website-chat-for-freescout' ) );
 			} else {
 				$out['freescout_url'] = $url;
 			}
@@ -428,7 +428,7 @@ class LCFF_Settings {
 		} elseif ( self::is_valid_site_id( $site_id ) ) {
 			$out['site_id'] = $site_id;
 		} else {
-			add_settings_error( self::OPTION, 'lcff_site_id', __( 'The Site ID must be 32 lowercase hexadecimal characters.', 'live-chat-for-freescout' ) );
+			add_settings_error( self::OPTION, 'lcff_site_id', __( 'The Site ID must be 32 lowercase hexadecimal characters.', 'website-chat-for-freescout' ) );
 		}
 
 		$secret = trim( sanitize_text_field( self::text( $input, 'secret' ) ) );
@@ -436,7 +436,7 @@ class LCFF_Settings {
 			if ( self::is_valid_secret( $secret ) ) {
 				$out['secret'] = $secret;
 			} else {
-				add_settings_error( self::OPTION, 'lcff_secret', __( 'The secret must be 43 characters: letters, digits, "-" and "_".', 'live-chat-for-freescout' ) );
+				add_settings_error( self::OPTION, 'lcff_secret', __( 'The secret must be 43 characters: letters, digits, "-" and "_".', 'website-chat-for-freescout' ) );
 			}
 		} elseif ( ! empty( $input['secret_clear'] ) ) {
 			$out['secret'] = '';
@@ -451,7 +451,7 @@ class LCFF_Settings {
 			foreach ( $list as $i => $entry ) {
 				if ( $i < 7 && is_array( $entry ) && null === $out['hours'][ $i ] ) {
 					/* translators: %s: the day of the week */
-					add_settings_error( self::OPTION, 'lcff_hours_' . $i, sprintf( __( 'Working hours for %s: the end must be later than the start. The day was saved as closed.', 'live-chat-for-freescout' ), $names[ $i ] ) );
+					add_settings_error( self::OPTION, 'lcff_hours_' . $i, sprintf( __( 'Working hours for %s: the end must be later than the start. The day was saved as closed.', 'website-chat-for-freescout' ), $names[ $i ] ) );
 				}
 			}
 		}
@@ -527,13 +527,13 @@ class LCFF_Settings {
 	 */
 	private static function day_names() {
 		return array(
-			__( 'Monday', 'live-chat-for-freescout' ),
-			__( 'Tuesday', 'live-chat-for-freescout' ),
-			__( 'Wednesday', 'live-chat-for-freescout' ),
-			__( 'Thursday', 'live-chat-for-freescout' ),
-			__( 'Friday', 'live-chat-for-freescout' ),
-			__( 'Saturday', 'live-chat-for-freescout' ),
-			__( 'Sunday', 'live-chat-for-freescout' ),
+			__( 'Monday', 'website-chat-for-freescout' ),
+			__( 'Tuesday', 'website-chat-for-freescout' ),
+			__( 'Wednesday', 'website-chat-for-freescout' ),
+			__( 'Thursday', 'website-chat-for-freescout' ),
+			__( 'Friday', 'website-chat-for-freescout' ),
+			__( 'Saturday', 'website-chat-for-freescout' ),
+			__( 'Sunday', 'website-chat-for-freescout' ),
 		);
 	}
 
@@ -607,7 +607,7 @@ class LCFF_Settings {
 		$is_secret = 'password' === $args['type'];
 		$invalid  = $is_secret && '' !== $stored && ! self::is_valid_secret( $stored );
 		if ( $is_secret && '' !== $stored && ! $invalid ) {
-			$args['placeholder'] = __( 'Saved — leave blank to keep', 'live-chat-for-freescout' );
+			$args['placeholder'] = __( 'Saved — leave blank to keep', 'website-chat-for-freescout' );
 		}
 		printf(
 			'<input type="%1$s" id="lcff_%2$s" name="%3$s[%2$s]" value="%4$s" placeholder="%5$s" class="regular-text" autocomplete="off" />',
@@ -618,17 +618,17 @@ class LCFF_Settings {
 			esc_attr( $args['placeholder'] )
 		);
 		if ( $invalid ) {
-			echo '<p class="description lcff-error">' . esc_html__( 'The saved secret is not valid. Paste it again from FreeScout.', 'live-chat-for-freescout' ) . '</p>';
+			echo '<p class="description lcff-error">' . esc_html__( 'The saved secret is not valid. Paste it again from FreeScout.', 'website-chat-for-freescout' ) . '</p>';
 		}
 		if ( ! empty( $args['description'] ) ) {
 			echo '<p class="description">' . esc_html( $args['description'] ) . '</p>';
 		}
 		if ( $is_secret ) {
 			if ( '' !== $stored ) {
-				printf( '<p><label for="lcff_secret_clear"><input type="checkbox" id="lcff_secret_clear" name="%1$s[secret_clear]" value="1" /> %2$s</label></p>', esc_attr( self::OPTION ), esc_html__( 'Remove the saved secret', 'live-chat-for-freescout' ) );
+				printf( '<p><label for="lcff_secret_clear"><input type="checkbox" id="lcff_secret_clear" name="%1$s[secret_clear]" value="1" /> %2$s</label></p>', esc_attr( self::OPTION ), esc_html__( 'Remove the saved secret', 'website-chat-for-freescout' ) );
 			}
 			if ( ! LCFF_Crypto::available() ) {
-				echo '<p class="description lcff-error">' . esc_html__( "This server's PHP can't encrypt with AES-256-GCM (OpenSSL), so logged-in visitors and order numbers can't be recognized.", 'live-chat-for-freescout' ) . '</p>';
+				echo '<p class="description lcff-error">' . esc_html__( "This server's PHP can't encrypt with AES-256-GCM (OpenSSL), so logged-in visitors and order numbers can't be recognized.", 'website-chat-for-freescout' ) . '</p>';
 			}
 		}
 	}
@@ -651,7 +651,7 @@ class LCFF_Settings {
 				?>
 			</form>
 			<p>
-				<button type="button" class="button" id="lcff_test_connection"><?php echo esc_html__( 'Test connection', 'live-chat-for-freescout' ); ?></button>
+				<button type="button" class="button" id="lcff_test_connection"><?php echo esc_html__( 'Test connection', 'website-chat-for-freescout' ); ?></button>
 			</p>
 			<p id="lcff_test_result" aria-live="polite"></p>
 		</div>

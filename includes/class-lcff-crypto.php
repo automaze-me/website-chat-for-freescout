@@ -2,7 +2,7 @@
 /**
  * Seals identity tokens (AES-256-GCM) that only FreeScout can open.
  *
- * @package LiveChatForFreeScout
+ * @package WebsiteChatForFreeScout
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

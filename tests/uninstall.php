@@ -7,7 +7,7 @@
  */
 
 define( 'ABSPATH', __DIR__ . '/' );
-define( 'WP_UNINSTALL_PLUGIN', 'live-chat-for-freescout/live-chat-for-freescout.php' );
+define( 'WP_UNINSTALL_PLUGIN', 'website-chat-for-freescout/website-chat-for-freescout.php' );
 
 $GLOBALS['log']       = array();
 $GLOBALS['multisite'] = false;

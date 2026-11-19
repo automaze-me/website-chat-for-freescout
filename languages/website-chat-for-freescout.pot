@@ -1,9 +1,9 @@
-# Copyright (C) 2026 Live Chat for FreeScout contributors
+# Copyright (C) 2026 Website Chat for FreeScout contributors
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Live Chat for FreeScout 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/live-chat-for-freescout\n"
+"Project-Id-Version: Website Chat for FreeScout 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/website-chat-for-freescout\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12,19 +12,19 @@ msgstr ""
 "POT-Creation-Date: 2026-11-19T18:03:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: live-chat-for-freescout\n"
+"X-Domain: website-chat-for-freescout\n"
 "Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Plugin Name of the plugin
-#: live-chat-for-freescout.php
+#: website-chat-for-freescout.php
 #: includes/class-lcff-settings.php:128
 #: includes/class-lcff-settings.php:129
-msgid "Live Chat for FreeScout"
+msgid "Website Chat for FreeScout"
 msgstr ""
 
 #. Description of the plugin
-#: live-chat-for-freescout.php
+#: website-chat-for-freescout.php
 msgid "Adds a live chat bubble to your site that delivers visitor messages to your FreeScout help desk."
 msgstr ""
 

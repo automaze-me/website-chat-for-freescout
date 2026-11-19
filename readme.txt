@@ -1,4 +1,4 @@
-=== Live Chat for FreeScout ===
+=== Website Chat for FreeScout ===
 Contributors: automazeme
 Tags: live chat, chat, helpdesk, freescout, support
 Requires at least: 6.3
@@ -12,9 +12,11 @@ Add a live chat bubble to your site. Visitor messages arrive in your FreeScout h
 
 == Description ==
 
-Live Chat for FreeScout puts a chat bubble on your website. Visitors type a message, and it lands in your own [FreeScout](https://freescout.net) help desk as a normal conversation. Your team answers there, and the reply appears in the visitor's chat.
+Website Chat for FreeScout puts a chat bubble on your website. Visitors type a message, and it lands in your own [FreeScout](https://freescout.net) help desk as a normal conversation. Your team answers there, and the reply appears in the visitor's chat.
 
 FreeScout is a free, self-hosted help desk. This plugin does not work on its own: it needs a FreeScout installation with the Website Chat module, which is available at [github.com/automaze-me/freescout-wordpresschat](https://github.com/automaze-me/freescout-wordpresschat). Messages go straight from the visitor's browser to your FreeScout. They never pass through your WordPress site or any third-party chat service.
+
+Website Chat for FreeScout and the Website Chat module are made by automaze.me. They are not affiliated with the FreeScout team, and they are not FreeScout's own Live Chat module.
 
 **What your visitors see**
 
@@ -44,8 +46,8 @@ If you use WooCommerce, logged-in customers are recognized and visitors can ente
 
 **In WordPress**
 
-1. Install and activate the plugin: upload it to `/wp-content/plugins/live-chat-for-freescout`, or install it from the Plugins screen.
-2. Open Settings → Live Chat for FreeScout.
+1. Install and activate the plugin: upload it to `/wp-content/plugins/website-chat-for-freescout`, or install it from the Plugins screen.
+2. Open Settings → Website Chat for FreeScout.
 3. Enter the FreeScout URL, the Site ID and the secret.
 4. Choose how the chat looks and when you are available.
 5. Click "Test connection" to check that WordPress can reach FreeScout and that the details match, then save.
@@ -72,7 +74,7 @@ The chat shows your away message. After the visitor's first message it asks an a
 
 = Can I hide the bubble on some pages? =
 
-Yes. In Settings → Live Chat for FreeScout, list the pages under "Hide on pages", one path per line, for example `/checkout/`. A line that ends in `*` hides the chat on every page below that path.
+Yes. In Settings → Website Chat for FreeScout, list the pages under "Hide on pages", one path per line, for example `/checkout/`. A line that ends in `*` hides the chat on every page below that path.
 
 == Screenshots ==
 
@@ -85,7 +87,7 @@ Yes. In Settings → Live Chat for FreeScout, list the pages under "Hide on page
 
 == External services ==
 
-This plugin connects your website to a FreeScout help desk. FreeScout is free, self-hosted help desk software ([freescout.net](https://freescout.net)). You run the FreeScout server yourself, or someone you trust runs it for you, and you enter its address in Settings → Live Chat for FreeScout. The chat does not work without it, and no other service is involved: no chat provider, no analytics, no tracking.
+This plugin connects your website to a FreeScout help desk. FreeScout is free, self-hosted help desk software ([freescout.net](https://freescout.net)). You run the FreeScout server yourself, or someone you trust runs it for you, and you enter its address in Settings → Website Chat for FreeScout. The chat does not work without it, and no other service is involved: no chat provider, no analytics, no tracking.
 
 **Calls from the visitor's browser to your FreeScout server**
 
@@ -140,7 +142,7 @@ Under Settings → Privacy → Policy Guide, the plugin adds suggested text that
 == Changelog ==
 
 = 1.0.0 =
-* First release on wordpress.org. Updates now come from wordpress.org.
+* First release on wordpress.org. Versions 0.1.x were published on GitHub under the name "Live Chat for FreeScout"; the settings carry over.
 
 = 0.1.0 =
 * Initial version.

@@ -2,7 +2,7 @@
 /**
  * Front-end widget loader.
  *
- * @package LiveChatForFreeScout
+ * @package WebsiteChatForFreeScout
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -69,50 +69,50 @@ class LCFF_Widget {
 			// English sentences with localized day names.
 			'locale'     => self::js_locale( determine_locale() ),
 			'strings'  => array(
-				'title'       => __( 'Chat with us', 'live-chat-for-freescout' ),
-				'placeholder' => __( 'Type a message…', 'live-chat-for-freescout' ),
-				'send'        => __( 'Send', 'live-chat-for-freescout' ),
-				'close'       => __( 'Close chat', 'live-chat-for-freescout' ),
-				'retry'       => __( "Couldn't send. Tap to retry.", 'live-chat-for-freescout' ),
-				'unsent'      => __( "This message couldn't be sent.", 'live-chat-for-freescout' ),
-				'attach'      => __( 'Attach a file', 'live-chat-for-freescout' ),
+				'title'       => __( 'Chat with us', 'website-chat-for-freescout' ),
+				'placeholder' => __( 'Type a message…', 'website-chat-for-freescout' ),
+				'send'        => __( 'Send', 'website-chat-for-freescout' ),
+				'close'       => __( 'Close chat', 'website-chat-for-freescout' ),
+				'retry'       => __( "Couldn't send. Tap to retry.", 'website-chat-for-freescout' ),
+				'unsent'      => __( "This message couldn't be sent.", 'website-chat-for-freescout' ),
+				'attach'      => __( 'Attach a file', 'website-chat-for-freescout' ),
 				/* translators: {mb} is replaced in the browser with the size limit in megabytes, e.g. 10. Keep {mb} as it is. */
-				'fileTooLarge' => __( 'This file is too large (max {mb} MB).', 'live-chat-for-freescout' ),
-				'fileTooLargeNoLimit' => __( 'This file is too large.', 'live-chat-for-freescout' ),
-				'fileType'    => __( 'Only images (JPEG, PNG, GIF, WebP) and PDF files can be sent.', 'live-chat-for-freescout' ),
-				'fileFailed'  => __( "Couldn't send the file.", 'live-chat-for-freescout' ),
-				'fileLoadFailed' => __( "Couldn't load the file.", 'live-chat-for-freescout' ),
-				'askIntro'        => __( "We usually reply within a few minutes. If you leave the page, we'll send the answer by email.", 'live-chat-for-freescout' ),
-				'askLabel'        => __( 'Email or order no.', 'live-chat-for-freescout' ),
-				'askLabelEmail'   => __( 'Email', 'live-chat-for-freescout' ),
-				'askOk'           => __( 'OK', 'live-chat-for-freescout' ),
-				'askLater'        => __( 'Not now', 'live-chat-for-freescout' ),
-				'askAway'         => __( 'Where should we send the answer?', 'live-chat-for-freescout' ),
-				'askThanks'       => __( 'Thanks!', 'live-chat-for-freescout' ),
-				'askEmailOnly'    => __( 'Could you leave your email address? Then we can send you the answer.', 'live-chat-for-freescout' ),
-				'askInvalid'      => __( 'Please enter a valid email address.', 'live-chat-for-freescout' ),
-				'privacy'         => __( 'Privacy policy', 'live-chat-for-freescout' ),
-				'noticeEmail'     => __( 'This conversation continues by email. The link in our email brings you back here.', 'live-chat-for-freescout' ),
-				'noticeElsewhere' => __( 'This conversation now continues in another browser.', 'live-chat-for-freescout' ),
-				'continuePrompt'  => __( 'Continue your conversation here?', 'live-chat-for-freescout' ),
-				'continueButton'  => __( 'Continue chat', 'live-chat-for-freescout' ),
-				'continueFailed'  => __( 'This link has expired or was already used.', 'live-chat-for-freescout' ),
-				'continueRetry'   => __( "The chat couldn't be opened. Please try again.", 'live-chat-for-freescout' ),
-				'online'          => __( 'Online · usually replies in a few minutes', 'live-chat-for-freescout' ),
+				'fileTooLarge' => __( 'This file is too large (max {mb} MB).', 'website-chat-for-freescout' ),
+				'fileTooLargeNoLimit' => __( 'This file is too large.', 'website-chat-for-freescout' ),
+				'fileType'    => __( 'Only images (JPEG, PNG, GIF, WebP) and PDF files can be sent.', 'website-chat-for-freescout' ),
+				'fileFailed'  => __( "Couldn't send the file.", 'website-chat-for-freescout' ),
+				'fileLoadFailed' => __( "Couldn't load the file.", 'website-chat-for-freescout' ),
+				'askIntro'        => __( "We usually reply within a few minutes. If you leave the page, we'll send the answer by email.", 'website-chat-for-freescout' ),
+				'askLabel'        => __( 'Email or order no.', 'website-chat-for-freescout' ),
+				'askLabelEmail'   => __( 'Email', 'website-chat-for-freescout' ),
+				'askOk'           => __( 'OK', 'website-chat-for-freescout' ),
+				'askLater'        => __( 'Not now', 'website-chat-for-freescout' ),
+				'askAway'         => __( 'Where should we send the answer?', 'website-chat-for-freescout' ),
+				'askThanks'       => __( 'Thanks!', 'website-chat-for-freescout' ),
+				'askEmailOnly'    => __( 'Could you leave your email address? Then we can send you the answer.', 'website-chat-for-freescout' ),
+				'askInvalid'      => __( 'Please enter a valid email address.', 'website-chat-for-freescout' ),
+				'privacy'         => __( 'Privacy policy', 'website-chat-for-freescout' ),
+				'noticeEmail'     => __( 'This conversation continues by email. The link in our email brings you back here.', 'website-chat-for-freescout' ),
+				'noticeElsewhere' => __( 'This conversation now continues in another browser.', 'website-chat-for-freescout' ),
+				'continuePrompt'  => __( 'Continue your conversation here?', 'website-chat-for-freescout' ),
+				'continueButton'  => __( 'Continue chat', 'website-chat-for-freescout' ),
+				'continueFailed'  => __( 'This link has expired or was already used.', 'website-chat-for-freescout' ),
+				'continueRetry'   => __( "The chat couldn't be opened. Please try again.", 'website-chat-for-freescout' ),
+				'online'          => __( 'Online · usually replies in a few minutes', 'website-chat-for-freescout' ),
 				/* translators: Header status while the chat is closed. {time} is replaced in the browser with today's opening time in the site language, e.g. 09:00. Keep {time} as it is. */
-				'backToday'       => __( "Back today {time} · we'll answer by email", 'live-chat-for-freescout' ),
+				'backToday'       => __( "Back today {time} · we'll answer by email", 'website-chat-for-freescout' ),
 				/* translators: Header status while the chat is closed. {day} is replaced in the browser with the weekday name in the site language, e.g. Monday; {time} with the opening time, e.g. 09:00. Keep {day} and {time} as they are. */
-				'backDay'         => __( "Back {day} {time} · we'll answer by email", 'live-chat-for-freescout' ),
-				'rateLimited'     => __( 'Too many messages in a short time. Please wait a moment.', 'live-chat-for-freescout' ),
+				'backDay'         => __( "Back {day} {time} · we'll answer by email", 'website-chat-for-freescout' ),
+				'rateLimited'     => __( 'Too many messages in a short time. Please wait a moment.', 'website-chat-for-freescout' ),
 				/* translators: Shown when the wait is longer than 90 seconds. {min} is replaced in the browser with the number of minutes to wait, e.g. 60 (always 2 or more). Keep {min} as it is. */
-				'rateLimitedMin'  => __( 'Too many messages in a short time. Please try again in {min} minutes.', 'live-chat-for-freescout' ),
+				'rateLimitedMin'  => __( 'Too many messages in a short time. Please try again in {min} minutes.', 'website-chat-for-freescout' ),
 				/* translators: Added after the reason why a chat message wasn't sent (e.g. too many messages); the visitor taps the message to send it again. */
-				'retryHint'       => __( 'Tap to resend.', 'live-chat-for-freescout' ),
-				'viaEmail'        => __( 'via email', 'live-chat-for-freescout' ),
+				'retryHint'       => __( 'Tap to resend.', 'website-chat-for-freescout' ),
+				'viaEmail'        => __( 'via email', 'website-chat-for-freescout' ),
 				// The loader's: the bubble's name after the chat failed to load, and its unread count.
-				'loadFailed'      => __( "The chat couldn't be loaded. Tap to try again.", 'live-chat-for-freescout' ),
+				'loadFailed'      => __( "The chat couldn't be loaded. Tap to try again.", 'website-chat-for-freescout' ),
 				/* translators: Added to the chat button's name for screen readers, after the team name. {n} is replaced in the browser with the number of unread replies, e.g. 3. Keep {n} as it is. */
-				'unreadCount'     => __( '{n} new', 'live-chat-for-freescout' ),
+				'unreadCount'     => __( '{n} new', 'website-chat-for-freescout' ),
 			),
 			)
 		);

@@ -59,7 +59,7 @@ set_error_handler( function ( $no, $msg, $file, $line ) {
 	return true;
 } );
 
-require $root . '/live-chat-for-freescout.php';
+require $root . '/website-chat-for-freescout.php';
 
 /** The inline script enqueue() adds for these stored settings. */
 function lcff_inline_for( array $settings ) {

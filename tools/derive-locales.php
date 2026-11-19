@@ -17,7 +17,7 @@ if ( 'cli' !== PHP_SAPI ) {
 
 $root   = dirname( __DIR__ );
 $dir    = $root . '/languages';
-$prefix = 'live-chat-for-freescout-';
+$prefix = 'website-chat-for-freescout-';
 
 $targets = array(
 	'de_AT'          => array( 'de_DE', false ),

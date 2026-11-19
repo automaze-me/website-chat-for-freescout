@@ -16,7 +16,7 @@ function t( $name, $got, $expected ) {
 	}
 }
 
-$main   = (string) file_get_contents( $root . '/live-chat-for-freescout.php' );
+$main   = (string) file_get_contents( $root . '/website-chat-for-freescout.php' );
 $readme = (string) file_get_contents( $root . '/readme.txt' );
 
 function lcff_header_field( $text, $field ) {

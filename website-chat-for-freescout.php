@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Live Chat for FreeScout
+ * Plugin Name:       Website Chat for FreeScout
  * Description:       Adds a live chat bubble to your site that delivers visitor messages to your FreeScout help desk.
  * Version:           1.0.0
  * Requires at least: 6.3
@@ -9,10 +9,10 @@
  * Author URI:        https://automaze.me
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       live-chat-for-freescout
+ * Text Domain:       website-chat-for-freescout
  * Domain Path:       /languages
  *
- * @package LiveChatForFreeScout
+ * @package WebsiteChatForFreeScout
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -38,7 +38,7 @@ require_once LCFF_PLUGIN_DIR . 'includes/class-lcff-privacy.php';
  */
 function lcff_load_textdomain() {
 	// Bundled German files stay until translate.wordpress.org ships language packs; WordPress's just-in-time loader reads only wp-content/languages/plugins, so without this call they never load.
-	load_plugin_textdomain( 'live-chat-for-freescout', false, dirname( plugin_basename( LCFF_PLUGIN_FILE ) ) . '/languages' ); // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- see the comment above.
+	load_plugin_textdomain( 'website-chat-for-freescout', false, dirname( plugin_basename( LCFF_PLUGIN_FILE ) ) . '/languages' ); // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- see the comment above.
 }
 add_action( 'init', 'lcff_load_textdomain' );
 

@@ -6,7 +6,7 @@
  * nonce. Cross-site requests are rejected instead, and the tokens are
  * encrypted and bound to the requester's chat token.
  *
- * @package LiveChatForFreeScout
+ * @package WebsiteChatForFreeScout
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

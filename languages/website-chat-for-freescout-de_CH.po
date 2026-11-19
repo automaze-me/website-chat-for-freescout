@@ -1,30 +1,31 @@
-# German (Sie) translation of Live Chat for FreeScout.
-# Copyright (C) 2026 Live Chat for FreeScout contributors
+# Generated from website-chat-for-freescout-de_DE_formal.po by tools/derive-locales.php. Do not edit.
+# German (Sie) translation of Website Chat for FreeScout.
+# Copyright (C) 2026 Website Chat for FreeScout contributors
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Live Chat for FreeScout 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/live-chat-for-freescout\n"
+"Project-Id-Version: Website Chat for FreeScout 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/website-chat-for-freescout\n"
 "POT-Creation-Date: 2026-11-05T07:26:50+00:00\n"
 "PO-Revision-Date: 2026-11-05T08:00:00+00:00\n"
-"Last-Translator: Live Chat for FreeScout contributors\n"
+"Last-Translator: Website Chat for FreeScout contributors\n"
 "Language-Team: Deutsch (Sie)\n"
-"Language: de_DE_formal\n"
+"Language: de_CH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Domain: live-chat-for-freescout\n"
+"X-Domain: website-chat-for-freescout\n"
 
 #. Plugin Name of the plugin
-#: live-chat-for-freescout.php
+#: website-chat-for-freescout.php
 #: includes/class-lcff-settings.php:83
 #: includes/class-lcff-settings.php:84
-msgid "Live Chat for FreeScout"
-msgstr "Live Chat for FreeScout"
+msgid "Website Chat for FreeScout"
+msgstr "Website Chat for FreeScout"
 
 #. Description of the plugin
-#: live-chat-for-freescout.php
+#: website-chat-for-freescout.php
 msgid "Adds a live chat bubble to your site that delivers visitor messages to your FreeScout help desk."
 msgstr "Fügt Ihrer Website einen Live-Chat-Button hinzu und leitet die Nachrichten der Besucher an Ihren FreeScout-Helpdesk weiter."
 
@@ -156,7 +157,7 @@ msgstr "So bleibt der Button sichtbar, wo die Seite dahinter dieselbe Farbe hat.
 
 #: includes/class-lcff-settings.php:238
 msgid "Draw a white ring around the chat button"
-msgstr "Weißen Ring um den Chat-Button zeichnen"
+msgstr "Weissen Ring um den Chat-Button zeichnen"
 
 #: includes/class-lcff-settings.php:189
 msgid "Position"
@@ -164,11 +165,11 @@ msgstr "Position"
 
 #: includes/class-lcff-settings.php:190
 msgid "Welcome message"
-msgstr "Begrüßungsnachricht"
+msgstr "Begrüssungsnachricht"
 
 #: includes/class-lcff-settings.php:191
 msgid "Welcome message (away)"
-msgstr "Begrüßungsnachricht (außerhalb der Servicezeiten)"
+msgstr "Begrüssungsnachricht (ausserhalb der Servicezeiten)"
 
 #: includes/class-lcff-settings.php:192
 msgid "Hide on pages"
@@ -303,7 +304,7 @@ msgstr "Senden"
 
 #: includes/class-lcff-widget.php:66
 msgid "Close chat"
-msgstr "Chat schließen"
+msgstr "Chat schliessen"
 
 #: includes/class-lcff-widget.php:67
 msgid "Couldn't send. Tap to retry."
@@ -320,11 +321,11 @@ msgstr "Datei anhängen"
 #. translators: {mb} is replaced in the browser with the size limit in megabytes, e.g. 10. Keep {mb} as it is.
 #: includes/class-lcff-widget.php:71
 msgid "This file is too large (max {mb} MB)."
-msgstr "Diese Datei ist zu groß (max. {mb} MB)."
+msgstr "Diese Datei ist zu gross (max. {mb} MB)."
 
 #: includes/class-lcff-widget.php:72
 msgid "This file is too large."
-msgstr "Diese Datei ist zu groß."
+msgstr "Diese Datei ist zu gross."
 
 #: includes/class-lcff-widget.php:73
 msgid "Only images (JPEG, PNG, GIF, WebP) and PDF files can be sent."
@@ -489,7 +490,7 @@ msgstr "%s: Öffnungszeit"
 #: includes/class-lcff-settings.php
 #, php-format
 msgid "%s: closing time"
-msgstr "%s: Schließzeit"
+msgstr "%s: Schliesszeit"
 
 #: includes/class-lcff-settings.php:300
 msgid "From 00:00 to 00:00 counts as the whole day."

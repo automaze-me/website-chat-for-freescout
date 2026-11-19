@@ -17,7 +17,7 @@ function selected( $a, $b = true, $echo = true ) { return $a === $b ? ' selected
 function wp_timezone_string() { return 'Europe/Berlin'; }
 function wp_parse_url( $url, $component = -1 ) { return parse_url( $url, $component ); }
 function current_user_can( $cap ) { return true; }
-function get_admin_page_title() { return 'Live Chat for FreeScout'; }
+function get_admin_page_title() { return 'Website Chat for FreeScout'; }
 function settings_fields( $g ) { echo '<input type="hidden" name="option_page" value="' . $g . '" />'; }
 function do_settings_sections( $p ) { echo '<div class="lcff-sections"></div>'; }
 function submit_button() { echo '<input type="submit" class="button button-primary" value="Save" />'; }

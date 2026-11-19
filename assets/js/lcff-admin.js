@@ -1,4 +1,4 @@
-/* Live Chat for FreeScout - settings page: color picker and avatar chooser. */
+/* Website Chat for FreeScout - settings page: color picker and avatar chooser. */
 (function ($) {
 	'use strict';
 

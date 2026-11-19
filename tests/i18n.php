@@ -11,7 +11,7 @@
 
 define( 'ABSPATH', __DIR__ . '/' );
 
-const LCFF_TEST_DOMAIN = 'live-chat-for-freescout';
+const LCFF_TEST_DOMAIN = 'website-chat-for-freescout';
 $root = dirname( __DIR__ );
 
 // Tiny stand-ins for the WordPress functions the main file and the widget's enqueue() call.
@@ -290,7 +290,7 @@ function lcff_scan( $file, &$problems ) {
 
 /* ---- 1. js_locale() and LCFF_CONFIG.locale ---- */
 
-require $root . '/live-chat-for-freescout.php';
+require $root . '/website-chat-for-freescout.php';
 
 t( 'js_locale de_DE_formal', method_exists( 'LCFF_Widget', 'js_locale' ) ? LCFF_Widget::js_locale( 'de_DE_formal' ) : null, 'de-DE' );
 t( 'js_locale en_US', method_exists( 'LCFF_Widget', 'js_locale' ) ? LCFF_Widget::js_locale( 'en_US' ) : null, 'en-US' );
@@ -338,14 +338,14 @@ foreach ( array( 'plugins_loaded', 'after_setup_theme', 'setup_theme' ) as $earl
 	}
 	t( "no textdomain load on $early (before init)", $GLOBALS['lcff_td_calls'], array() );
 }
-$main = (string) file_get_contents( $root . '/live-chat-for-freescout.php' );
+$main = (string) file_get_contents( $root . '/website-chat-for-freescout.php' );
 t( 'plugin header names the domain path', 1 === preg_match( '/^\s*\*\s*Domain Path:\s*\/languages\s*$/m', $main ), true );
 
 /* ---- 3. the source scan and translator comments ---- */
 
 $problems = array();
 $calls    = array();
-foreach ( array_merge( array( $root . '/live-chat-for-freescout.php' ), glob( $root . '/includes/*.php' ) ) as $file ) {
+foreach ( array_merge( array( $root . '/website-chat-for-freescout.php' ), glob( $root . '/includes/*.php' ) ) as $file ) {
 	$calls = array_merge( $calls, lcff_scan( $file, $problems ) );
 }
 foreach ( $problems as $p ) {
@@ -390,11 +390,11 @@ t( 'translator comments checked', count( $comment_problems ), 0 );
 /* ---- 4. the .pot ---- */
 
 $langs = $root . '/languages';
-$pot   = lcff_po_parse( $langs . '/live-chat-for-freescout.pot' );
+$pot   = lcff_po_parse( $langs . '/website-chat-for-freescout.pot' );
 t( '.pot exists', is_array( $pot ), true );
 $pot = is_array( $pot ) ? $pot : array();
 $ph  = lcff_po_header( $pot );
-t( '.pot Project-Id-Version', isset( $ph['Project-Id-Version'] ) && 0 === strpos( $ph['Project-Id-Version'], 'Live Chat for FreeScout' ), true );
+t( '.pot Project-Id-Version', isset( $ph['Project-Id-Version'] ) && 0 === strpos( $ph['Project-Id-Version'], 'Website Chat for FreeScout' ), true );
 t( '.pot Content-Type', isset( $ph['Content-Type'] ) ? $ph['Content-Type'] : null, 'text/plain; charset=UTF-8' );
 t( '.pot Plural-Forms', isset( $ph['Plural-Forms'] ) ? $ph['Plural-Forms'] : null, 'nplurals=2; plural=(n != 1);' );
 t( '.pot X-Domain', isset( $ph['X-Domain'] ) ? $ph['X-Domain'] : null, LCFF_TEST_DOMAIN );
@@ -458,7 +458,7 @@ foreach ( array(
 }
 
 foreach ( array( 'de_DE', 'de_DE_formal' ) as $locale ) {
-	$po = lcff_po_parse( "$langs/live-chat-for-freescout-$locale.po" );
+	$po = lcff_po_parse( "$langs/website-chat-for-freescout-$locale.po" );
 	t( "$locale.po exists", is_array( $po ), true );
 	$po = is_array( $po ) ? $po : array();
 	$h  = lcff_po_header( $po );
@@ -510,7 +510,7 @@ foreach ( array( 'de_DE', 'de_DE_formal' ) as $locale ) {
 	}
 
 	// The compiled file is what WordPress loads; it must match the .po.
-	$mo = lcff_mo_parse( "$langs/live-chat-for-freescout-$locale.mo" );
+	$mo = lcff_mo_parse( "$langs/website-chat-for-freescout-$locale.mo" );
 	t( "$locale.mo exists and parses", is_array( $mo ), true );
 	$mo        = is_array( $mo ) ? $mo : array();
 	$mismatch  = array();
@@ -535,16 +535,16 @@ $generated = array(
 );
 foreach ( $generated as $locale => $def ) {
 	list( $source, $ss, $form ) = $def;
-	$file = "$langs/live-chat-for-freescout-$locale.po";
+	$file = "$langs/website-chat-for-freescout-$locale.po";
 	$po   = lcff_po_parse( $file );
 	t( "$locale.po exists", is_array( $po ), true );
 	$po  = is_array( $po ) ? $po : array();
-	$src = lcff_po_parse( "$langs/live-chat-for-freescout-$source.po" );
+	$src = lcff_po_parse( "$langs/website-chat-for-freescout-$source.po" );
 	$src = is_array( $src ) ? $src : array();
 	$raw = (string) @file_get_contents( $file );
 	t(
 		"$locale.po starts with the generator comment",
-		0 === strpos( $raw, "# Generated from live-chat-for-freescout-$source.po by tools/derive-locales.php. Do not edit.\n" ),
+		0 === strpos( $raw, "# Generated from website-chat-for-freescout-$source.po by tools/derive-locales.php. Do not edit.\n" ),
 		true
 	);
 	$h = lcff_po_header( $po );
@@ -592,7 +592,7 @@ foreach ( $generated as $locale => $def ) {
 		t( "$locale askAway says Sie", 1 === preg_match( $sie_words, $str ) && 0 === preg_match( $du_words, $str ), true );
 	}
 
-	$mo = lcff_mo_parse( "$langs/live-chat-for-freescout-$locale.mo" );
+	$mo = lcff_mo_parse( "$langs/website-chat-for-freescout-$locale.mo" );
 	t( "$locale.mo exists and parses", is_array( $mo ), true );
 	$mo       = is_array( $mo ) ? $mo : array();
 	$mismatch = array();

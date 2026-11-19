@@ -6,7 +6,7 @@
  */
 
 define( 'ABSPATH', __DIR__ . '/' );
-define( 'LCFF_PLUGIN_FILE', '/srv/wp/wp-content/plugins/live-chat-for-freescout/live-chat-for-freescout.php' );
+define( 'LCFF_PLUGIN_FILE', '/srv/wp/wp-content/plugins/website-chat-for-freescout/website-chat-for-freescout.php' );
 
 $GLOBALS['lcff_filters']  = array();
 $GLOBALS['lcff_actions']  = array();
@@ -58,7 +58,7 @@ t( 'add_policy runs on admin_init', isset( $GLOBALS['lcff_actions']['admin_init'
 
 // Without the WP Consent API: nothing happens, nothing breaks.
 LCFF_Privacy::register_consent();
-$hook = 'wp_consent_api_registered_live-chat-for-freescout/live-chat-for-freescout.php';
+$hook = 'wp_consent_api_registered_website-chat-for-freescout/website-chat-for-freescout.php';
 t( 'consent filter registered', isset( $GLOBALS['lcff_filters'][ $hook ] ) ? $GLOBALS['lcff_filters'][ $hook ] : null, '__return_true' );
 t( 'consent filter returns true', call_user_func( $GLOBALS['lcff_filters'][ $hook ] ), true );
 t( 'no cookie info without wp_add_cookie_info()', $GLOBALS['lcff_cookies'], array() );
@@ -79,7 +79,7 @@ LCFF_Privacy::register_cookie_info();
 t(
 	'lcff_logout registered as functional, with expiry and purpose',
 	$GLOBALS['lcff_cookies'],
-	array( array( 'lcff_logout', 'Live Chat for FreeScout', 'functional', '10 minutes', 'Tells the chat to close the conversation in this browser after you log out of this site.', '' ) )
+	array( array( 'lcff_logout', 'Website Chat for FreeScout', 'functional', '10 minutes', 'Tells the chat to close the conversation in this browser after you log out of this site.', '' ) )
 );
 $GLOBALS['lcff_cookie_throws'] = true;
 $threw = false;
@@ -127,7 +127,7 @@ if ( true ) {
 }
 LCFF_Privacy::add_policy();
 t( 'add_policy registers once under the plugin name', count( $GLOBALS['lcff_policies'] ), 1 );
-t( 'add_policy name', $GLOBALS['lcff_policies'][0][0], 'Live Chat for FreeScout' );
+t( 'add_policy name', $GLOBALS['lcff_policies'][0][0], 'Website Chat for FreeScout' );
 t( 'add_policy content is policy_text()', $GLOBALS['lcff_policies'][0][1], $text );
 
 /* ---- the readme lists every storage key the scripts use ---- */

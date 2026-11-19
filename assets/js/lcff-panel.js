@@ -1,4 +1,4 @@
-/* Live Chat for FreeScout - chat panel. Plain JS, no dependencies. */
+/* Website Chat for FreeScout - chat panel. Plain JS, no dependencies. */
 (function () {
 	'use strict';
 

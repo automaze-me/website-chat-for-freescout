@@ -4,7 +4,7 @@
  * transients, on every site of a multisite network, and the network-wide
  * cache of the latest release's update data.
  *
- * @package LiveChatForFreeScout
+ * @package WebsiteChatForFreeScout
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {

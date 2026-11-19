@@ -1,5 +1,5 @@
 /*
- * Live Chat for FreeScout - "open now" from the working-hours schedule.
+ * Website Chat for FreeScout - "open now" from the working-hours schedule.
  * Pure: no DOM, the clock is passed in. Plain ES5.
  *
  * hours = { tz: 'Europe/Berlin' | null, offset: minutes | null, days: [7 x (null | ['HH:MM','HH:MM'])] }

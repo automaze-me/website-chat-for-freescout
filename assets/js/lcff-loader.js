@@ -1,4 +1,4 @@
-/* Live Chat for FreeScout - bubble and lazy loader. Plain JS, no dependencies. */
+/* Website Chat for FreeScout - bubble and lazy loader. Plain JS, no dependencies. */
 (function () {
 	'use strict';
 

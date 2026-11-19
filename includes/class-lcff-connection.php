@@ -3,7 +3,7 @@
  * "Test connection" on the settings page: asks FreeScout whether the Site ID,
  * the secret and this website's address match. Tests the saved settings only.
  *
- * @package LiveChatForFreeScout
+ * @package WebsiteChatForFreeScout
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -34,10 +34,10 @@ class LCFF_Connection {
 	 */
 	public static function handle_ajax() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'You are not allowed to test the connection.', 'live-chat-for-freescout' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to test the connection.', 'website-chat-for-freescout' ) ), 403 );
 		}
 		if ( ! check_ajax_referer( self::NONCE, 'nonce', false ) ) {
-			wp_send_json_error( array( 'message' => __( 'Your session has expired. Reload the page and try again.', 'live-chat-for-freescout' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Your session has expired. Reload the page and try again.', 'website-chat-for-freescout' ) ), 403 );
 		}
 		nocache_headers();
 		wp_send_json( self::test() );
@@ -62,7 +62,7 @@ class LCFF_Connection {
 		if ( ! LCFF_Settings::is_configured() ) {
 			return array(
 				'ok'      => false,
-				'message' => __( 'Save the FreeScout URL and Site ID first.', 'live-chat-for-freescout' ),
+				'message' => __( 'Save the FreeScout URL and Site ID first.', 'website-chat-for-freescout' ),
 			);
 		}
 
@@ -117,7 +117,7 @@ class LCFF_Connection {
 	public static function interpret( $response, $home_origin = '', $no_gcm = false ) {
 		if ( is_wp_error( $response ) ) {
 			/* translators: %s: the error from the HTTP request */
-			return self::result( false, sprintf( __( "Couldn't reach FreeScout: %s", 'live-chat-for-freescout' ), $response->get_error_message() ) );
+			return self::result( false, sprintf( __( "Couldn't reach FreeScout: %s", 'website-chat-for-freescout' ), $response->get_error_message() ) );
 		}
 
 		$code = (int) wp_remote_retrieve_response_code( $response );
@@ -126,32 +126,32 @@ class LCFF_Connection {
 
 		if ( 200 === $code && is_array( $data ) && isset( $data['ok'] ) && true === $data['ok'] && isset( $data['secret'] ) ) {
 			if ( 'invalid' === $data['secret'] ) {
-				return self::result( false, __( "FreeScout knows this Site ID, but the secret doesn't match. Copy the secret again from FreeScout.", 'live-chat-for-freescout' ) );
+				return self::result( false, __( "FreeScout knows this Site ID, but the secret doesn't match. Copy the secret again from FreeScout.", 'website-chat-for-freescout' ) );
 			}
 			if ( 'ok' === $data['secret'] ) {
 				if ( isset( $data['origin'] ) && 'mismatch' === $data['origin'] ) {
 					$expected = isset( $data['expected_origin'] ) && is_string( $data['expected_origin'] ) ? $data['expected_origin'] : '';
 					/* translators: 1: the website address FreeScout expects, 2: this website's address */
-					return self::result( false, sprintf( __( "FreeScout expects this website at %1\$s, but this site's address is %2\$s. Correct the address in FreeScout under Manage → Website Chat.", 'live-chat-for-freescout' ), $expected, $home_origin ) );
+					return self::result( false, sprintf( __( "FreeScout expects this website at %1\$s, but this site's address is %2\$s. Correct the address in FreeScout under Manage → Website Chat.", 'website-chat-for-freescout' ), $expected, $home_origin ) );
 				}
-				return self::result( true, __( 'Connected. FreeScout accepted the Site ID and the secret.', 'live-chat-for-freescout' ) );
+				return self::result( true, __( 'Connected. FreeScout accepted the Site ID and the secret.', 'website-chat-for-freescout' ) );
 			}
 			if ( 'missing' === $data['secret'] ) {
 				if ( $no_gcm ) {
-					return self::result( false, __( "This server's PHP can't encrypt with AES-256-GCM (OpenSSL), so logged-in visitors and order numbers can't be recognized.", 'live-chat-for-freescout' ) );
+					return self::result( false, __( "This server's PHP can't encrypt with AES-256-GCM (OpenSSL), so logged-in visitors and order numbers can't be recognized.", 'website-chat-for-freescout' ) );
 				}
-				return self::result( true, __( "Connected. No secret is saved, so logged-in visitors and order numbers won't be recognized.", 'live-chat-for-freescout' ) );
+				return self::result( true, __( "Connected. No secret is saved, so logged-in visitors and order numbers won't be recognized.", 'website-chat-for-freescout' ) );
 			}
 		} elseif ( 404 === $code && 'not_found' === $err ) {
-			return self::result( false, __( "FreeScout doesn't know this Site ID. Check it under Manage → Website Chat.", 'live-chat-for-freescout' ) );
+			return self::result( false, __( "FreeScout doesn't know this Site ID. Check it under Manage → Website Chat.", 'website-chat-for-freescout' ) );
 		} elseif ( 503 === $code && 'maintenance' === $err ) {
-			return self::result( false, __( 'FreeScout needs a database update first (System → Tools → Migrate DB).', 'live-chat-for-freescout' ) );
+			return self::result( false, __( 'FreeScout needs a database update first (System → Tools → Migrate DB).', 'website-chat-for-freescout' ) );
 		} elseif ( 429 === $code ) {
-			return self::result( false, __( 'Too many tests. Try again in a minute.', 'live-chat-for-freescout' ) );
+			return self::result( false, __( 'Too many tests. Try again in a minute.', 'website-chat-for-freescout' ) );
 		}
 
 		/* translators: %d: the HTTP status code */
-		return self::result( false, sprintf( __( 'FreeScout answered, but not as expected (HTTP %d). Is the Website Chat module installed and active?', 'live-chat-for-freescout' ), $code ) );
+		return self::result( false, sprintf( __( 'FreeScout answered, but not as expected (HTTP %d). Is the Website Chat module installed and active?', 'website-chat-for-freescout' ), $code ) );
 	}
 
 	/**

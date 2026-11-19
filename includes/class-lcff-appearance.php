@@ -5,7 +5,7 @@
  * The sanitizing and matching are pure PHP so they can be tested without
  * WordPress (tests/appearance.php).
  *
- * @package LiveChatForFreeScout
+ * @package WebsiteChatForFreeScout
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -188,10 +188,10 @@ class LCFF_Appearance {
 			'buttonIcon'  => self::icon_color( $button ),
 			'buttonRing'  => isset( $s['button_ring'] ) && true === $s['button_ring'],
 			'position'    => ( isset( $s['position'] ) && 'left' === $s['position'] ) ? 'left' : 'right',
-			'teamName'    => ! empty( $s['team_name'] ) ? self::decode( $s['team_name'] ) : __( 'Chat with us', 'live-chat-for-freescout' ),
+			'teamName'    => ! empty( $s['team_name'] ) ? self::decode( $s['team_name'] ) : __( 'Chat with us', 'website-chat-for-freescout' ),
 			'avatarUrl'   => $avatar,
-			'welcome'     => ! empty( $s['welcome'] ) ? self::decode( $s['welcome'] ) : __( 'Hi! How can we help?', 'live-chat-for-freescout' ),
-			'welcomeAway' => ! empty( $s['welcome_away'] ) ? self::decode( $s['welcome_away'] ) : __( "We're away right now. Leave a message and we'll answer by email.", 'live-chat-for-freescout' ),
+			'welcome'     => ! empty( $s['welcome'] ) ? self::decode( $s['welcome'] ) : __( 'Hi! How can we help?', 'website-chat-for-freescout' ),
+			'welcomeAway' => ! empty( $s['welcome_away'] ) ? self::decode( $s['welcome_away'] ) : __( "We're away right now. Leave a message and we'll answer by email.", 'website-chat-for-freescout' ),
 			'privacyUrl'  => $privacy,
 		);
 	}
