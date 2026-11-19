@@ -4,7 +4,7 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Live Chat for FreeScout 0.1.0\n"
+"Project-Id-Version: Live Chat for FreeScout 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/live-chat-for-freescout\n"
 "POT-Creation-Date: 2026-11-05T07:26:50+00:00\n"
 "PO-Revision-Date: 2026-11-05T08:00:00+00:00\n"
@@ -158,10 +158,6 @@ msgstr "So bleibt der Button sichtbar, wo die Seite dahinter dieselbe Farbe hat.
 #: includes/class-lcff-settings.php:238
 msgid "Draw a white ring around the chat button"
 msgstr "Weissen Ring um den Chat-Button zeichnen"
-
-#: includes/class-lcff-updater.php:94
-msgid "Release notes on GitHub"
-msgstr "Versionshinweise auf GitHub"
 
 #: includes/class-lcff-settings.php:189
 msgid "Position"

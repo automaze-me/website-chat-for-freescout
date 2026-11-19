@@ -20,7 +20,7 @@ The plugin is the visitor-facing half. The other half is the FreeScout module [W
 
 ## Updates
 
-New versions show up under **Dashboard → Updates** like any other plugin update, and you can switch on automatic updates for the plugin. WordPress gets them from this repository's latest release, not from wordpress.org.
+From version 1.0.0 on, the plugin gets its updates from wordpress.org: new versions show up under **Dashboard → Updates** like any other plugin update, and you can switch on automatic updates for the plugin. A 0.1.x copy installed from a GitHub release updates itself from here once more, to 1.0.0, and from then on gets its updates from wordpress.org too.
 
 After an update, purge your page cache. A cached page still carries the old widget settings.
 
@@ -46,7 +46,7 @@ for f in tests/*.php; do php "$f"; done
 node tests/hours.test.js
 ```
 
-To release, set the new version in the plugin header (`Version`), in `LCFF_VERSION` and in readme.txt's `Stable tag`, commit, and push a tag `vX.Y.Z`. The release workflow runs the tests, builds `live-chat-for-freescout.zip` and `update.json`, and publishes both on the GitHub release. Installed copies read `update.json` from the latest release.
+To release, set the new version in the plugin header (`Version`), in `LCFF_VERSION` and in readme.txt's `Stable tag`, commit, and push a tag `vX.Y.Z`. The release workflow runs the tests, builds `live-chat-for-freescout.zip` and `update.json`, and publishes both on the GitHub release. Only 0.1.x copies still read `update.json` from the latest release; 1.0.0 and later update from wordpress.org.
 
 ## License
 

@@ -4,7 +4,7 @@ Tags: live chat, chat, helpdesk, freescout, support
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -129,6 +129,9 @@ The plugin stores no visitor data in WordPress. Its settings are one option (`lc
 Under Settings → Privacy → Policy Guide, the plugin adds suggested text that describes the data above. Add how long your help desk keeps chat conversations. You can also show a link to your privacy policy inside the chat, in the plugin settings.
 
 == Changelog ==
+
+= 1.0.0 =
+* First release on wordpress.org. Updates now come from wordpress.org.
 
 = 0.1.0 =
 * Initial version.

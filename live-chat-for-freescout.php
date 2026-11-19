@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Live Chat for FreeScout
  * Description:       Adds a live chat bubble to your site that delivers visitor messages to your FreeScout help desk.
- * Version:           0.1.0
+ * Version:           1.0.0
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            automaze.me
@@ -11,7 +11,6 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       live-chat-for-freescout
  * Domain Path:       /languages
- * Update URI:        https://github.com/automaze-me/live-chat-for-freescout
  *
  * @package LiveChatForFreeScout
  */
@@ -20,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LCFF_VERSION', '0.1.0' );
+define( 'LCFF_VERSION', '1.0.0' );
 define( 'LCFF_PLUGIN_FILE', __FILE__ );
 define( 'LCFF_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LCFF_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -32,7 +31,6 @@ require_once LCFF_PLUGIN_DIR . 'includes/class-lcff-identity.php';
 require_once LCFF_PLUGIN_DIR . 'includes/class-lcff-connection.php';
 require_once LCFF_PLUGIN_DIR . 'includes/class-lcff-widget.php';
 require_once LCFF_PLUGIN_DIR . 'includes/class-lcff-privacy.php';
-require_once LCFF_PLUGIN_DIR . 'includes/class-lcff-updater.php';
 
 /**
  * Loads the bundled translations (languages/). On init: WordPress 6.7+
@@ -49,4 +47,3 @@ LCFF_Widget::init();
 LCFF_Identity::init();
 LCFF_Connection::init();
 LCFF_Privacy::init();
-LCFF_Updater::init();

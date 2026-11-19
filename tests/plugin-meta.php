@@ -35,15 +35,15 @@ t( 'Requires PHP matches', lcff_readme_field( $readme, 'Requires PHP' ), lcff_he
 t( 'Requires PHP is 7.4', lcff_header_field( $main, 'Requires PHP' ), '7.4' );
 t( 'Stable tag equals LCFF_VERSION', lcff_readme_field( $readme, 'Stable tag' ), $version );
 t( 'Version equals LCFF_VERSION', lcff_header_field( $main, 'Version' ), $version );
-t( 'version is 0.1.0', $version, '0.1.0' );
+t( 'version is 1.0.0', $version, '1.0.0' );
 t( 'Contributors', lcff_readme_field( $readme, 'Contributors' ), 'automazeme' );
 t( 'Tested up to', lcff_readme_field( $readme, 'Tested up to' ), '7.1' );
 t( 'Author', lcff_header_field( $main, 'Author' ), 'automaze.me' );
 t( 'Author URI', lcff_header_field( $main, 'Author URI' ), 'https://automaze.me' );
-// Updates come from GitHub releases (includes/class-lcff-updater.php): WordPress
-// then asks the update_plugins_github.com filter and never wordpress.org.
-t( 'Update URI', lcff_header_field( $main, 'Update URI' ), 'https://github.com/automaze-me/live-chat-for-freescout' );
-t( 'the updater is loaded and started', false !== strpos( $main, "includes/class-lcff-updater.php'" ) && false !== strpos( $main, 'LCFF_Updater::init();' ), true );
+// Updates come from wordpress.org, which forbids an updater of the plugin's own
+// (Guideline 8). An Update URI header would also stop WordPress from asking it.
+t( 'no Update URI header', lcff_header_field( $main, 'Update URI' ), null );
+t( 'no updater in the plugin', file_exists( $root . '/includes/class-lcff-updater.php' ) || false !== stripos( $main, 'updater' ), false );
 t( 'License matches', lcff_readme_field( $readme, 'License' ), lcff_header_field( $main, 'License' ) );
 
 foreach ( array( 'Description', 'Installation', 'Frequently Asked Questions', 'Changelog' ) as $section ) {

@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Live Chat for FreeScout 0.1.0\n"
+"Project-Id-Version: Live Chat for FreeScout 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/live-chat-for-freescout\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,10 +156,6 @@ msgstr ""
 
 #: includes/class-lcff-settings.php:238
 msgid "Draw a white ring around the chat button"
-msgstr ""
-
-#: includes/class-lcff-updater.php:94
-msgid "Release notes on GitHub"
 msgstr ""
 
 #: includes/class-lcff-settings.php:189
