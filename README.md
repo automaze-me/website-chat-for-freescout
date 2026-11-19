@@ -48,6 +48,8 @@ node tests/hours.test.js
 
 To release, set the new version in the plugin header (`Version`), in `LCFF_VERSION` and in readme.txt's `Stable tag`, commit, and push a tag `vX.Y.Z`. The release workflow runs the tests, builds `live-chat-for-freescout.zip` and `update.json`, and publishes both on the GitHub release. Only 0.1.x copies still read `update.json` from the latest release; 1.0.0 and later update from wordpress.org.
 
+`.wordpress-org/` holds the banner, the icon and the screenshots of the wordpress.org listing. They belong in the plugin's SVN `assets/` folder and stay out of the zip. The banner illustration and the icon were generated with an image model (gpt-image); the type on the banner is set separately.
+
 ## License
 
 GPLv2 or later, see [LICENSE](LICENSE).
