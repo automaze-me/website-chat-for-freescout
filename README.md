@@ -15,7 +15,7 @@ The plugin and the module are made by [automaze.me](https://automaze.me). They a
 
 ## Installation
 
-1. In WordPress, open **Plugins → Add New Plugin**, search for "Website Chat for FreeScout", install and activate it. Until the plugin is listed on wordpress.org, download `website-chat-for-freescout.zip` from the [latest release](https://github.com/automaze-me/live-chat-for-freescout/releases/latest) instead and upload it under **Plugins → Add New Plugin → Upload Plugin**.
+1. In WordPress, open **Plugins → Add New Plugin**, search for "Website Chat for FreeScout", install and activate it. Until the plugin is listed on wordpress.org, the [latest release](https://github.com/automaze-me/website-chat-for-freescout/releases/latest) is still version 0.1.0 under the earlier name "Live Chat for FreeScout"; upload its zip under **Plugins → Add New Plugin → Upload Plugin**, and switch as described under [Updates](#updates) once the listing is live.
 2. In FreeScout, open **Manage → Website Chat** and add your website. Its entry shows the Site ID and the secret.
 3. In WordPress, open **Settings → Website Chat for FreeScout**, enter the FreeScout URL, the Site ID and the secret, and save. **Test connection** tells you whether everything matches.
 
