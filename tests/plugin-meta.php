@@ -46,7 +46,7 @@ t( 'no Update URI header', lcff_header_field( $main, 'Update URI' ), null );
 t( 'no updater in the plugin', file_exists( $root . '/includes/class-lcff-updater.php' ) || false !== stripos( $main, 'updater' ), false );
 t( 'License matches', lcff_readme_field( $readme, 'License' ), lcff_header_field( $main, 'License' ) );
 
-foreach ( array( 'Description', 'Installation', 'Frequently Asked Questions', 'Changelog' ) as $section ) {
+foreach ( array( 'Description', 'Installation', 'Frequently Asked Questions', 'Screenshots', 'Changelog' ) as $section ) {
 	t( "readme has == $section ==", 1 === preg_match( '/^== ' . preg_quote( $section, '/' ) . ' ==\s*$/m', $readme ), true );
 }
 $tags = array_filter( array_map( 'trim', explode( ',', (string) lcff_readme_field( $readme, 'Tags' ) ) ) );

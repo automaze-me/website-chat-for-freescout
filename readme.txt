@@ -74,6 +74,15 @@ The chat shows your away message. After the visitor's first message it asks an a
 
 Yes. In Settings → Live Chat for FreeScout, list the pages under "Hide on pages", one path per line, for example `/checkout/`. A line that ends in `*` hides the chat on every page below that path.
 
+== Screenshots ==
+
+1. The chat on a shop page: a visitor asks about an order, and your team's reply appears in the chat.
+2. Outside working hours, the chat shows your away message and asks where to send the answer.
+3. On a phone, the chat opens full screen.
+4. The settings, part 1: connect your FreeScout and set your working hours.
+5. The settings, part 2: team name, avatar, colors, position, welcome messages, pages without the chat and the privacy link.
+6. A website chat in FreeScout: your team answers it like any other conversation and chooses whether a reply goes to the chat or out by email.
+
 == External services ==
 
 This plugin connects your website to a FreeScout help desk. FreeScout is free, self-hosted help desk software ([freescout.net](https://freescout.net)). You run the FreeScout server yourself, or someone you trust runs it for you, and you enter its address in Settings → Live Chat for FreeScout. The chat does not work without it, and no other service is involved: no chat provider, no analytics, no tracking.
