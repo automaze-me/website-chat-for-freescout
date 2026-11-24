@@ -27,6 +27,7 @@ function is_main_site( $site_id = null, $network_id = null ) { return ! empty( $
 function get_current_blog_id() { return 7; }
 function get_option( $name, $default = false ) { return $GLOBALS['lcff_settings']; }
 function wp_unslash( $v ) { return $v; }
+function esc_url_raw( $url, $protocols = null ) { return $url; }
 function wp_parse_url( $url, $component = -1 ) { return parse_url( $url, $component ); }
 function home_url() { return 'https://shop.example.test'; }
 function admin_url( $path = '' ) { return 'https://shop.example.test/wp-admin/' . $path; }

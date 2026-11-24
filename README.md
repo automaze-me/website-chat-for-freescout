@@ -42,7 +42,7 @@ After an update, purge your page cache. A cached page still carries the old widg
 - Pages where the chat stays hidden, such as the checkout.
 - A link to your privacy policy inside the chat.
 
-With WooCommerce, the chat recognizes logged-in customers, and visitors can give an order number so your team sees who they are talking to. German is included for Germany, Austria and Switzerland, in the "du" and the "Sie" form.
+With WooCommerce, the chat recognizes logged-in customers, and visitors can give an order number so your team sees who they are talking to. The chat follows your site's language; WordPress installs the translations from [translate.wordpress.org](https://translate.wordpress.org/).
 
 What the plugin stores and sends is listed in [readme.txt](readme.txt), under "Privacy" and "External services".
 
@@ -56,6 +56,8 @@ node tests/hours.test.js
 ```
 
 To release, set the new version in the plugin header (`Version`), in `LCFF_VERSION` and in readme.txt's `Stable tag`, commit, and push a tag `vX.Y.Z`. The release workflow checks that the tag matches the version, runs the tests, builds `website-chat-for-freescout.zip` and publishes it on the GitHub release.
+
+`languages/` holds the German translations: de_DE ("du"), de_DE_formal ("Sie") and de_AT, de_CH, de_CH_informal, which `tools/derive-locales.php` derives from those two. They stay out of the zip, because plugins on wordpress.org get their translations from translate.wordpress.org; these files are the source for importing them there. To see them on a test site, copy the `.mo` files to `wp-content/languages/plugins/`.
 
 `.wordpress-org/` holds the banner, the icon and the screenshots of the wordpress.org listing. They belong in the plugin's SVN `assets/` folder and stay out of the zip. The banner illustration and the icon were generated with an image model (gpt-image); the type on the banner is set separately.
 

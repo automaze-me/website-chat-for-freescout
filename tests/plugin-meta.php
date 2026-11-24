@@ -65,12 +65,13 @@ t( 'readme points to the Privacy section', false !== strpos( $readme, 'Privacy' 
 t( 'no RhinoBag reference', preg_match( '/rhinobag/i', $readme . $main ), 0 );
 
 $dist = (string) @file_get_contents( $root . '/.distignore' );
-$want = array( '.git', '.github', '.gitattributes', '.gitignore', '.distignore', 'tests', 'tools', 'node_modules', '*.zip', '.DS_Store', 'README.md', '.wordpress-org' );
+$want = array( '.git', '.github', '.gitattributes', '.gitignore', '.distignore', 'tests', 'tools', 'node_modules', '*.zip', '.DS_Store', 'README.md', '.wordpress-org', 'languages' );
 t( '.distignore lines', array_values( array_filter( array_map( 'trim', explode( "\n", $dist ) ) ) ), $want );
 $attr = (string) file_get_contents( $root . '/.gitattributes' );
 t( '.gitattributes ignores .distignore', 1 === preg_match( '#^(/)?\.distignore export-ignore$#m', $attr ), true );
 t( '.gitattributes ignores /tools', 1 === preg_match( '#^/tools export-ignore$#m', $attr ), true );
 t( '.gitattributes ignores /README.md (GitHub only; readme.txt is the plugin readme)', 1 === preg_match( '#^/README\.md export-ignore$#m', $attr ), true );
+t( '.gitattributes ignores /languages (wordpress.org: translations come from translate.wordpress.org, not the zip)', 1 === preg_match( '#^/languages export-ignore$#m', $attr ), true );
 t( '.gitattributes ignores /.wordpress-org (banner, icon and screenshots go to the SVN assets folder)', 1 === preg_match( '#^/\.wordpress-org export-ignore$#m', $attr ), true );
 
 echo $ok ? "PASS\n" : "FAIL\n";

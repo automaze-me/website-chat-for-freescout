@@ -3,9 +3,10 @@
  * Translations: the .pot covers every gettext string in the PHP code, both
  * German files translate all of it (de_DE with "du", de_DE_formal with
  * "Sie"), the compiled .mo files match the .po files, every call with a
- * placeholder has a translator comment, the text domain loads on init, and
- * the widget's date locale follows WordPress (LCFF_Widget::js_locale(),
- * LCFF_CONFIG.locale).
+ * placeholder has a translator comment, WordPress loads the translations
+ * itself (no load_plugin_textdomain(), no gettext call before init, no
+ * Domain Path header), and the widget's date locale follows WordPress
+ * (LCFF_Widget::js_locale(), LCFF_CONFIG.locale).
  * Run: php tests/i18n.php
  */
 
@@ -17,6 +18,7 @@ $root = dirname( __DIR__ );
 // Tiny stand-ins for the WordPress functions the main file and the widget's enqueue() call.
 $GLOBALS['lcff_actions']  = array();
 $GLOBALS['lcff_td_calls'] = array();
+$GLOBALS['lcff_gettext']  = 0;
 $GLOBALS['lcff_inline']   = array();
 $GLOBALS['lcff_locale']   = 'en_US';
 function add_action( $hook, $cb, $priority = 10, $args = 1 ) { $GLOBALS['lcff_actions'][ $hook ][] = $cb; $GLOBALS['lcff_priorities'][ $hook ][] = array( $cb, $priority ); }
@@ -28,7 +30,7 @@ function load_plugin_textdomain( $domain, $deprecated = false, $rel_path = false
 	$GLOBALS['lcff_td_calls'][] = array( $domain, $deprecated, $rel_path );
 	return true;
 }
-function __( $text, $domain = null ) { return $text; }
+function __( $text, $domain = null ) { $GLOBALS['lcff_gettext']++; return $text; }
 function is_admin() { return false; }
 function is_multisite() { return false; }
 function get_option( $name, $default = false ) {
@@ -39,6 +41,7 @@ function get_option( $name, $default = false ) {
 	);
 }
 function wp_unslash( $v ) { return $v; }
+function esc_url_raw( $url, $protocols = null ) { return $url; }
 function wp_parse_url( $url, $component = -1 ) { return parse_url( $url, $component ); }
 function home_url() { return 'https://shop.example.test'; }
 function admin_url( $path = '' ) { return 'https://shop.example.test/wp-admin/' . $path; }
@@ -291,6 +294,7 @@ function lcff_scan( $file, &$problems ) {
 /* ---- 1. js_locale() and LCFF_CONFIG.locale ---- */
 
 require $root . '/website-chat-for-freescout.php';
+$lcff_gettext_at_include = $GLOBALS['lcff_gettext'];
 
 t( 'js_locale de_DE_formal', method_exists( 'LCFF_Widget', 'js_locale' ) ? LCFF_Widget::js_locale( 'de_DE_formal' ) : null, 'de-DE' );
 t( 'js_locale en_US', method_exists( 'LCFF_Widget', 'js_locale' ) ? LCFF_Widget::js_locale( 'en_US' ) : null, 'en-US' );
@@ -313,33 +317,36 @@ t( 'LCFF_CONFIG.locale for de_DE_formal', isset( $cfg['locale'] ) ? $cfg['locale
 $cfg = lcff_config_for( 'en_US' );
 t( 'LCFF_CONFIG.locale for en_US', isset( $cfg['locale'] ) ? $cfg['locale'] : null, 'en-US' );
 
-/* ---- 2. the text domain loads on init, from languages/ ---- */
+/* ---- 2. WordPress loads the translations itself ---- */
 
-t( 'no textdomain load while the plugin file is included', $GLOBALS['lcff_td_calls'], array() );
-$init = isset( $GLOBALS['lcff_actions']['init'] ) ? $GLOBALS['lcff_actions']['init'] : array();
-foreach ( $init as $cb ) {
+// wordpress.org review: since WordPress 4.6 a directory plugin needs no
+// load_plugin_textdomain(); WordPress loads wp-content/languages/plugins
+// just in time. A gettext call before init makes WordPress 6.7+ warn that
+// the translations load too early.
+t( 'no gettext call while the plugin file is included', $lcff_gettext_at_include, 0 );
+foreach ( array( 'plugins_loaded', 'setup_theme', 'after_setup_theme' ) as $early ) {
+	$GLOBALS['lcff_gettext'] = 0;
+	foreach ( isset( $GLOBALS['lcff_actions'][ $early ] ) ? $GLOBALS['lcff_actions'][ $early ] : array() as $cb ) {
+		call_user_func( $cb );
+	}
+	t( "no gettext call on $early (before init)", $GLOBALS['lcff_gettext'], 0 );
+}
+foreach ( isset( $GLOBALS['lcff_actions']['init'] ) ? $GLOBALS['lcff_actions']['init'] : array() as $cb ) {
 	call_user_func( $cb );
 }
-t(
-	'load_plugin_textdomain on init',
-	$GLOBALS['lcff_td_calls'],
-	array( array( LCFF_TEST_DOMAIN, false, basename( $root ) . '/languages' ) )
-);
+t( 'no load_plugin_textdomain call, also not on init', $GLOBALS['lcff_td_calls'], array() );
 $prio = array();
 foreach ( isset( $GLOBALS['lcff_priorities']['init'] ) ? $GLOBALS['lcff_priorities']['init'] : array() as $row ) {
 	$prio[ is_array( $row[0] ) ? $row[0][1] : $row[0] ] = $row[1];
 }
-t( 'lcff_load_textdomain runs on init before priority 11', isset( $prio['lcff_load_textdomain'] ) && $prio['lcff_load_textdomain'] < 11, true );
-t( 'the cookie description registers on init at 11, after the text domain', isset( $prio['register_cookie_info'] ) ? $prio['register_cookie_info'] : null, 11 );
-foreach ( array( 'plugins_loaded', 'after_setup_theme', 'setup_theme' ) as $early ) {
-	$GLOBALS['lcff_td_calls'] = array();
-	foreach ( isset( $GLOBALS['lcff_actions'][ $early ] ) ? $GLOBALS['lcff_actions'][ $early ] : array() as $cb ) {
-		call_user_func( $cb );
-	}
-	t( "no textdomain load on $early (before init)", $GLOBALS['lcff_td_calls'], array() );
+t( 'the cookie description registers on init', isset( $prio['register_cookie_info'] ), true );
+$code = '';
+foreach ( array_merge( array( $root . '/website-chat-for-freescout.php', $root . '/uninstall.php' ), glob( $root . '/includes/*.php' ) ) as $file ) {
+	$code .= (string) file_get_contents( $file );
 }
+t( 'no load_plugin_textdomain in the plugin code', false === strpos( $code, 'load_plugin_textdomain' ), true );
 $main = (string) file_get_contents( $root . '/website-chat-for-freescout.php' );
-t( 'plugin header names the domain path', 1 === preg_match( '/^\s*\*\s*Domain Path:\s*\/languages\s*$/m', $main ), true );
+t( 'no Domain Path header (languages/ is not in the zip)', 1 === preg_match( '/^\s*\*\s*Domain Path:/m', $main ), false );
 
 /* ---- 3. the source scan and translator comments ---- */
 

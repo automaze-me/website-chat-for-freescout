@@ -24,7 +24,7 @@ Website Chat for FreeScout and the Website Chat module are made by automaze.me. 
 * Your working hours. Outside them the chat shows your away message instead.
 * An email fallback. If nobody is online or the visitor leaves the page, they can leave an email address and your answer is sent there.
 * File attachments: images (JPEG, PNG, GIF, WebP) and PDF files.
-* German and English. German is included for Germany, Austria and Switzerland, in the informal "du" and the formal "Sie" form. The language follows your site's language setting.
+* Your site's language. WordPress installs the plugin's translations from translate.wordpress.org, where anyone can help translate it.
 
 **What you control**
 

@@ -10,7 +10,6 @@
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       website-chat-for-freescout
- * Domain Path:       /languages
  *
  * @package WebsiteChatForFreeScout
  */
@@ -31,16 +30,6 @@ require_once LCFF_PLUGIN_DIR . 'includes/class-lcff-identity.php';
 require_once LCFF_PLUGIN_DIR . 'includes/class-lcff-connection.php';
 require_once LCFF_PLUGIN_DIR . 'includes/class-lcff-widget.php';
 require_once LCFF_PLUGIN_DIR . 'includes/class-lcff-privacy.php';
-
-/**
- * Loads the bundled translations (languages/). On init: WordPress 6.7+
- * warns when a plugin loads its translations earlier.
- */
-function lcff_load_textdomain() {
-	// Bundled German files stay until translate.wordpress.org ships language packs; WordPress's just-in-time loader reads only wp-content/languages/plugins, so without this call they never load.
-	load_plugin_textdomain( 'website-chat-for-freescout', false, dirname( plugin_basename( LCFF_PLUGIN_FILE ) ) . '/languages' ); // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- see the comment above.
-}
-add_action( 'init', 'lcff_load_textdomain' );
 
 LCFF_Settings::init();
 LCFF_Widget::init();

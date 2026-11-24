@@ -29,8 +29,8 @@ class LCFF_Widget {
 		$s = LCFF_Settings::get();
 
 		// Decided per request path on the server, so a full-page cache (which keys on the URL) stays correct.
-		// sanitize_text_field() would strip %xx octets from the path; the value is only parsed and matched, never output.
-		$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '/'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		// esc_url_raw(), not sanitize_text_field(): the latter strips %xx octets from the path.
+		$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/';
 		$request_path = LCFF_Appearance::request_path( (string) $request_uri, (string) wp_parse_url( home_url(), PHP_URL_PATH ) );
 		if ( LCFF_Appearance::is_hidden( $request_path, $s['hidden_paths'] ) ) {
 			return;

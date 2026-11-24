@@ -6,3 +6,4 @@
 /tools export-ignore
 /README.md export-ignore
 /.wordpress-org export-ignore
+/languages export-ignore

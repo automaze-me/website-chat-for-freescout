@@ -15,8 +15,8 @@ class LCFF_Privacy {
 
 	public static function init() {
 		add_action( 'plugins_loaded', array( __CLASS__, 'register_consent' ) );
-		// After lcff_load_textdomain (init, 10), so the cookie description is translated.
-		add_action( 'init', array( __CLASS__, 'register_cookie_info' ), 11 );
+		// On init: the cookie description is translated, and WordPress 6.7+ warns about translations loaded earlier.
+		add_action( 'init', array( __CLASS__, 'register_cookie_info' ) );
 		add_action( 'admin_init', array( __CLASS__, 'add_policy' ) );
 	}
 

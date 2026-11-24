@@ -50,7 +50,7 @@ require __DIR__ . '/../includes/class-lcff-privacy.php';
 
 LCFF_Privacy::init();
 t( 'register_consent (the filter) stays on plugins_loaded', $GLOBALS['lcff_actions']['plugins_loaded'] ?? null, array( array( 'LCFF_Privacy', 'register_consent' ) ) );
-t( 'register_cookie_info runs on init at 11, after the text domain loads', $GLOBALS['lcff_priorities']['init'][ serialize( array( 'LCFF_Privacy', 'register_cookie_info' ) ) ] ?? null, 11 );
+t( 'register_cookie_info runs on init (translations load just in time; WordPress 6.7+ warns before init)', $GLOBALS['lcff_priorities']['init'][ serialize( array( 'LCFF_Privacy', 'register_cookie_info' ) ) ] ?? null, 10 );
 t( 'nothing but the filter is on plugins_loaded', count( $GLOBALS['lcff_actions']['plugins_loaded'] ), 1 );
 t( 'add_policy runs on admin_init', isset( $GLOBALS['lcff_actions']['admin_init'] ) && in_array( array( 'LCFF_Privacy', 'add_policy' ), $GLOBALS['lcff_actions']['admin_init'], true ), true );
 
