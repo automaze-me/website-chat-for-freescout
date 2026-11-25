@@ -55,7 +55,7 @@ for f in tests/*.php; do php "$f"; done
 node tests/hours.test.js
 ```
 
-To release, set the new version in the plugin header (`Version`), in `LCFF_VERSION` and in readme.txt's `Stable tag`, commit, and push a tag `vX.Y.Z`. The release workflow checks that the tag matches the version, runs the tests, builds `website-chat-for-freescout.zip` and publishes it on the GitHub release.
+To release, set the new version in the plugin header (`Version`), in `LCFF_VERSION` and in readme.txt's `Stable tag`, commit, and push a tag `vX.Y.Z`. The release workflow checks that the tag matches the version, runs the tests, builds the package with `git archive`, commits it to the wordpress.org SVN repository (`trunk`, `tags/X.Y.Z`, and `.wordpress-org/` into `assets/`), and then publishes the same package as `website-chat-for-freescout.zip` on the GitHub release. It needs the repository secrets `SVN_USERNAME` and `SVN_PASSWORD` (the SVN password from the wordpress.org profile, under Account & Security).
 
 `languages/` holds the German translations: de_DE ("du"), de_DE_formal ("Sie") and de_AT, de_CH, de_CH_informal, which `tools/derive-locales.php` derives from those two. They stay out of the zip, because plugins on wordpress.org get their translations from translate.wordpress.org; these files are the source for importing them there. To see them on a test site, copy the `.mo` files to `wp-content/languages/plugins/`.
 

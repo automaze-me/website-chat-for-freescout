@@ -1,9 +1,18 @@
 name: Release
 
-# On a version tag (e.g. v1.0.1): run the tests, build the install zip and
-# publish a GitHub Release with it. The zip holds a top-level
-# website-chat-for-freescout/ folder, the layout WordPress expects under
-# Plugins > Add New > Upload Plugin. Installed copies update from wordpress.org.
+# On a version tag (e.g. v1.0.1): run the tests, build the plugin package,
+# publish it on wordpress.org and then publish a GitHub Release with the same
+# package as a zip.
+#
+# The package is `git archive` of the tag, so the export-ignore lines in
+# .gitattributes decide what ships, on wordpress.org and in the GitHub zip
+# alike. The zip holds a top-level website-chat-for-freescout/ folder, the
+# layout WordPress expects under Plugins > Add New > Upload Plugin. Installed
+# copies update from wordpress.org.
+#
+# Needs two repository secrets: SVN_USERNAME (the wordpress.org username,
+# automazeme) and SVN_PASSWORD (set under Account & Security on the
+# wordpress.org profile).
 on:
   push:
     tags:
@@ -36,10 +45,27 @@ jobs:
           done
           node tests/hours.test.js > /dev/null
 
-      - name: Build plugin zip
+      - name: Build plugin package
         # git archive honors export-ignore in .gitattributes (tests, tools,
-        # .github, .wordpress-org, README.md, ... stay out of the install zip).
-        run: git archive --format=zip --prefix=website-chat-for-freescout/ -o website-chat-for-freescout.zip HEAD
+        # languages, .github, .wordpress-org, README.md, ... stay out). The
+        # same archive goes into the zip and, unpacked, to wordpress.org.
+        run: |
+          git archive --format=zip --prefix=website-chat-for-freescout/ -o website-chat-for-freescout.zip HEAD
+          mkdir build
+          git archive --format=tar --prefix=website-chat-for-freescout/ HEAD | tar -x -C build
+
+      - name: Deploy to wordpress.org
+        # One SVN commit: build/website-chat-for-freescout becomes trunk, trunk
+        # is copied to tags/<version without the v>, and .wordpress-org/ is
+        # synced to assets/. With BUILD_DIR set the action ignores .distignore.
+        # A version that already exists in tags/ is skipped, so re-running the
+        # workflow after a failed GitHub release step does not deploy twice.
+        uses: 10up/action-wordpress-plugin-deploy@54bd289b8525fd23a5c365ec369185f2966529c2 # 2.3.0
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: website-chat-for-freescout
+          BUILD_DIR: build/website-chat-for-freescout
 
       - name: Publish release
         env:
