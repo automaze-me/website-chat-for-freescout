@@ -410,8 +410,8 @@ $expected_ids = array();
 foreach ( $calls as $c ) {
 	$expected_ids[ $c[0] ] = true;
 }
-// The plugin header's translatable fields.
-foreach ( array( 'Plugin Name', 'Description' ) as $field ) {
+// The plugin header's fields that translate.wordpress.org offers for translation.
+foreach ( array( 'Plugin Name', 'Description', 'Author', 'Author URI' ) as $field ) {
 	if ( preg_match( '/^\s*\*\s*' . preg_quote( $field, '/' ) . ':\s*(.+?)\s*$/m', $main, $m ) ) {
 		$expected_ids[ $m[1] ] = true;
 	}
